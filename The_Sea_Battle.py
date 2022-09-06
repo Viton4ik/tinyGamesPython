@@ -79,7 +79,7 @@ class Board:
         print("    ------------------------- ")
         for i, row in enumerate(self.board_field):
             for j in range(6):
-                if self.hid and (row[j] == "■"): #or row[j] == "."):
+                if self.hid and (row[j] == "■"): 
                    row[j] = " "
             row_str += f"  {i+1} | {' | '.join(row)} | \n" # fill the field with lines
         row_str += "    ------------------------- "
@@ -141,8 +141,7 @@ class Board:
             self.board_field[shot_coord.x][shot_coord.y] = "o"
             print("Miss!\n")
             self.hit_check = 0 # if missed
-            # return self.hit_check ####????
-
+   
         for ship in self.ship_list:
             if shot_coord in ship.dots:
                 self.hit_check = 0
