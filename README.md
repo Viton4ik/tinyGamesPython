@@ -6,3 +6,6 @@ Tic-tac-toe game python code is presented here
     # ** --- checking if not 'integer' was put in added
     # *** --- 'draw' condition added
     # **** --- win condition reduced
+
+06/09/2022
+The Sea Battle Game added. First release.
