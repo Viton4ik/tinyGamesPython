@@ -1,4 +1,4 @@
-# ИТОГОВОЕ ЗАДАНИЕ 5.6 (HW-02) - Skillfactory
+
 # Victor Vetoshkin
 # August 2022
 #version 2.0
