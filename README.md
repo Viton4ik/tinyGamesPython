@@ -9,3 +9,6 @@ Tic-tac-toe game python code is presented here
 
 06/09/2022
 The Sea Battle Game added. First release.
+
+08/09/2022
+The Sea Battle Game added. Release 02.
