@@ -6,6 +6,8 @@
     # ** --- checking if not 'integer' was put in added
     # *** --- 'draw' condition added
     # **** --- win condition reduced
+# rev.03
+    #  **** --- fast 'draw' condition has been added
 
 import time
 
@@ -58,6 +60,14 @@ while not win():
                             player = '[X]'
                         else:
                             player = '[0]'
+                        if count == 7:  # **** --- fast 'draw' condition has been added
+                            key = input("There is no way to win now!\n "
+                                  "If you want to proceed press 'y' or press any key to abort")
+                            if key == 'y':
+                                pass
+                            else:
+                                print('The game has finished in a draw!')
+                                break
                         if count == 9: # *** --- 'draw' condition has been added
                             print('The game has finished in a draw!')
                             break
