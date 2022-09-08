@@ -1,4 +1,12 @@
+# the 'Sea Battle' Game
+
+# rev.02
+        # add function to avoid fire in contur for AI
+        # add function to Press 'Space' then 'Enter' to quit
+        # add time delay for using exe-file
+
 from random import randint
+import time # rev.02
 
 # inner logic
 
@@ -79,7 +87,7 @@ class Board:
         print("    ------------------------- ")
         for i, row in enumerate(self.board_field):
             for j in range(6):
-                if self.hid and (row[j] == "■"): 
+                if self.hid and (row[j] == "■"): #or row[j] == "."):
                    row[j] = " "
             row_str += f"  {i+1} | {' | '.join(row)} | \n" # fill the field with lines
         row_str += "    ------------------------- "
@@ -134,14 +142,13 @@ class Board:
             raise BoardOutException("'Your shot is out of the board!'")
 
         if shot_coord in self.shot_list:
-            # print("The place has already been shot down!")
             raise BoardOutException("The place has already been shot down!")
 
         if shot_coord not in self.shot_list and shot_coord not in self.all_ships_coord:
             self.board_field[shot_coord.x][shot_coord.y] = "o"
             print("Miss!\n")
             self.hit_check = 0 # if missed
-   
+
         for ship in self.ship_list:
             if shot_coord in ship.dots:
                 self.hit_check = 0
@@ -181,11 +188,17 @@ class Player:
 
 class AI(Player):
     "Class describes AI"
+    # rev.02
+    # to avoid fire in contur for AI
     def ask(self):
-        a = randint(0,5)
-        b = randint(0,5)
-        point = Dot(a, b)
-        print(f"Computer's shot: {point.x + 1} {point.y + 1}")
+        point = Dot((randint(0, 5)), (randint(0, 5)))
+        while True:
+            if self.ai_board.board_field[point.x][point.y] == ".":
+                point = Dot((randint(0,5)), (randint(0,5)))
+            else:
+                break
+        if not BoardOutException():
+            print(f"Computer's shot: {point.x + 1} {point.y + 1}")
         return point
 
 class User(Player):
@@ -294,12 +307,17 @@ class Game:
                 print(f"shot №'{shots}'")
                 self.user.move()
             if self.ai.board.killed == 7: # if all ships destroyed
-                print(f"\n!!!User WON!!!")
-                print(f"\nGAME OVER")
+                print(f"\n----- !!User WON!! -----")
+                print(f"\n----- GAME OVER  -----")
+                input("\nPress 'Space' then 'Enter' to quit")
+                time.sleep(1)  # delay to exit
                 break
             if self.user.board.killed == 7: # if all ships destroyed
                 print(f"\n----- !!AI WON!! -----")
                 print(f"\n----- GAME OVER  -----\n")
+                input("\nPress 'Space' then 'Enter' to quit")
+                time.sleep(1)  # delay to exit
+                break
 
     def print_status(self): # status list
         user_ships = []
