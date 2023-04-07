@@ -1,5 +1,5 @@
 
-## _"My first repository on GitHub."_
+## _"Tiny console games with Python"_
 
 >Tic-tac-toe game python code is presented here
 
